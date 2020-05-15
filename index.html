@@ -21,10 +21,21 @@
   <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0&appId=275981740461338&autoLogAppEvents=1">
+  </script>
 
-
-
-
+  <div 
+    class="fb-login-button" 
+    data-size="large" 
+    data-button-type="continue_with" 
+    data-layout="default" 
+    data-auto-logout-link="false" 
+    data-use-continue-as="true" 
+    data-width="" 
+    data-onlogin="checkLoginState();" 
+    data-scope="public_profile,email">
+  </div>
 
 
   <script>
@@ -39,10 +50,10 @@
       FB.AppEvents.logPageView();   
 
       FB.getLoginStatus(function(response) {
-        console.log("yes");
+        console.log(response);
         statusChangeCallback(response);
       });
-      
+
     };
   
     (function(d, s, id){
@@ -53,7 +64,12 @@
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
 
-
+     function checkLoginState() {
+       console.log("checkLoginState() was called");
+        FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+}
   </script>
 
 
